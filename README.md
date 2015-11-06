@@ -13,7 +13,7 @@ jquery.paginate.js adds a simple pagination to a container and its child element
 </script>
 ```
 
-##Settings
+##Options
 ###perPage (integer)
 Definies how many items are displayed per page.
 ###autoScroll (boolean)
