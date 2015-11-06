@@ -1,6 +1,6 @@
 // jQuery paginate
 // Add a pagination to everything.
-// Version 1.0.0
+// Version 1.0.1
 // by Kevin Eichhorn (https://github.com/bzzrckt)
 
 (function( $ ) {
@@ -11,8 +11,9 @@
 			#Defaults
 		*/
         var defaults = {
-            perPage:	5, //how many items per page
-            scope:		"" //which elements to target 
+            perPage:	5, 		//how many items per page
+            autoScroll:		true, 	//boolean: scroll to top of the container if a user clicks on a pagination link
+            scope:		"" 		//which elements to target 
         }
 			
         var plugin = this;
@@ -31,7 +32,7 @@
             plugin.settings = $.extend({}, defaults, options);
         
 			curPage = 1;			
-			items =  $element.find(plugin.settings.scope);		
+			items =  $element.children(plugin.settings.scope);		
 			maxPage = Math.ceil( items.length / plugin.settings.perPage ); //determines how many pages exist
 			
 			var paginationHTML = generatePagination(); //generate HTML for pageination
@@ -70,8 +71,8 @@
 			#Generates HTML for pagination (nav)
 		*/
         var generatePagination = function() {
-			var paginationEl = '<nav>';
-			paginationEl += '<ul class="paginate-pagination">';
+			var paginationEl = '<nav class="paginate-pagination">';
+			paginationEl += '<ul>';
 			
 			for(i = 1; i <= maxPage; i++) {
 				paginationEl += '<li><a href="#" data-page="' + i + '" class="page page-' + i + '">' + i + '</a></li>';
@@ -84,6 +85,10 @@
 			$(element, '.paginate-pagination').on('click', '.page', function(e) {
 					
 					e.preventDefault();
+					
+					if(plugin.settings.autoScroll)
+					$('html, body').animate({scrollTop: $element.offset().top}, 'slow');
+					
 					var page = $(this).data('page');
 					plugin.switchPage(page);
 					
