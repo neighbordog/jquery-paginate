@@ -6,7 +6,11 @@ jquery.paginate.js adds a simple pagination to a container and its child element
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="src/jquery.paginate.js"></script>
 ```
-**2. Initialize the plugin**
+**2. Add jquery.paginate.css (optional)**
+```html
+<link rel="stylehseet" href="src/jquery.paginate.css" />
+```
+**3. Initialize the plugin**
 ```html
 <script>
   $(foo).paginate({ 'perPage': 5 });
@@ -24,6 +28,11 @@ Definies which child elements will be targeted for the pagination (default: all)
 ```javascript
 $(foo).paginate({ 'scope': $('li') }); //targets all li elements in foo
 ```
+###paginatePosition (array)
+Defines where the pagination will be placed.<br/> 
+**top**: for above the container.<br/>
+**bottom**: for below the container.
+
 
 ##Methods
 ###switchPage(pageNumber)
