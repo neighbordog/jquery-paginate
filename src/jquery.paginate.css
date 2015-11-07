@@ -1,0 +1,37 @@
+.paginate-pagination ul {
+	
+	margin: 20px 0;
+	padding: 0;
+	list-style: none;
+	
+}
+
+.paginate-pagination ul:after {
+	
+	content: ' ';
+	display: table;
+	clear: both;
+	
+}
+
+.paginate-pagination ul > li {
+	
+	float: left;
+	margin-right: 3px;
+	
+}
+
+.paginate-pagination ul > li > a {
+	
+	display: block;
+	height: 30px;
+	width: 30px;
+	text-align: center;
+	line-height: 30px;
+	border: 1px solid #ddd;
+	background: white;
+	text-decoration: none;
+}
+
+.paginate-pagination ul > li > a:hover { background: #ddd; }
+.paginate-pagination ul > li > a.active { border-color: #efefef; }
