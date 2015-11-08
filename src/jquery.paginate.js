@@ -1,6 +1,6 @@
 // jQuery paginate
 // Add a pagination to everything.
-// Version 1.2.0
+// Version 1.2.1
 // by Kevin Eichhorn (https://github.com/bzzrckt)
 
 (function( $ ) {
@@ -14,7 +14,7 @@
             perPage:				5, 			//how many items per page
             autoScroll:				true, 		//boolean: scroll to top of the container if a user clicks on a pagination link
             scope:					'', 		//which elements to target 
-			paginatePosition:		['bottom']
+			paginatePosition:		['bottom']	//defines where the pagination will be displayed ['top', 'bottom']
         }
 			
         var plugin = this;
@@ -58,7 +58,26 @@
 			#Switch to Page > 'page'
 		*/
         plugin.switchPage = function(page) {
+        
+        	if(page == "next") {
+				page = curPage + 1;		
+        	}
+			
+			if(page == "prev") {
+				page = curPage - 1;			
+			}
 
+			//If page is out of range return false			
+			if(page < 1 || page > maxPage) {
+				return false;
+			}
+			
+			if(page > maxPage) {
+				$('.paginate-pagination-' + plugin_index).find('.page-next').addClass("deactive");
+				return false;
+			} else {
+				$('.paginate-pagination-' + plugin_index).find('.page-next').removeClass("deactive");	
+			}
 			$('.paginate-pagination-' + plugin_index).find('.active').removeClass('active');
 			$('.paginate-pagination-' + plugin_index).find('.page-' + page).addClass('active');
 								
@@ -66,11 +85,26 @@
 			
 			$( items ).hide(); 
 		
+			//Display items of page
 			for(i = 0; i < plugin.settings.perPage; i++) {	
 				if($( items[i + offset] ).length)
 					$( items[i + offset] ).fadeTo(100, 1);
 			}
 			
+			//Deactive prev button
+			if(page == 1) {
+				$('.paginate-pagination-' + plugin_index).find('.page-prev').addClass("deactive");
+			} else {
+				$('.paginate-pagination-' + plugin_index).find('.page-prev').removeClass("deactive");	
+			}
+
+			//Deactive next button			
+			if(page == maxPage) {
+				$('.paginate-pagination-' + plugin_index).find('.page-next').addClass("deactive");
+			} else {
+				$('.paginate-pagination-' + plugin_index).find('.page-next').removeClass("deactive");	
+			}
+						
 			curPage = page;
 			
 			return curPage;	
@@ -96,10 +130,14 @@
 			var paginationEl = '<nav class="paginate-pagination paginate-pagination-' + plugin_index + '" data-parent="' + plugin_index + '">';
 			paginationEl += '<ul>';
 			
+			paginationEl += '<li><a href="#" data-page="prev" class="page page-prev">&laquo;</a></li>';
+
 			for(i = 1; i <= maxPage; i++) {
 				paginationEl += '<li><a href="#" data-page="' + i + '" class="page page-' + i + '">' + i + '</a></li>';
 			}
-	
+				
+			paginationEl += '<li><a href="#" data-page="next" class="page page-next">&raquo;</a></li>';
+			
 			paginationEl += '</ul>';		
 			paginationEl += '</nav>';
 			
@@ -112,9 +150,10 @@
 					var paginateParent = $(this).parents('.paginate-pagination').data('parent');
 										
 					if(plugin.settings.autoScroll)
-					$('html, body').animate({scrollTop: $('.paginate-' + paginateParent).offset().top}, 'slow');
 
-					$('.paginate-' + paginateParent).data('paginate').switchPage(page);
+					if($('.paginate-' + paginateParent).data('paginate').switchPage(page)) {
+						$('html, body').animate({scrollTop: $('.paginate-' + paginateParent).offset().top}, 'slow');
+					}
 					
 			});	
 			
