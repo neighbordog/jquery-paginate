@@ -57,3 +57,5 @@ Remove plugin from element
 ```javascript
 $(foo).data('paginate').kill()
 ```
+##License
+jquery.paginate.js is licensed under the MIT license. (http://opensource.org/licenses/MIT)
