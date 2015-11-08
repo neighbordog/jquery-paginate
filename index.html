@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="jQuery Paginate : jQuery plugin for easy pagination">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>jQuery Paginate</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/bzzrckt/jquery-paginate">View on GitHub</a>
+
+          <h1 id="project_title">jQuery Paginate</h1>
+          <h2 id="project_tagline">jQuery plugin for easy pagination</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/bzzrckt/jquery-paginate/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/bzzrckt/jquery-paginate/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="jquery-paginate" class="anchor" href="#jquery-paginate" aria-hidden="true"><span class="octicon octicon-link"></span></a>jquery-paginate</h1>
+
+<p>jquery.paginate.js adds a simple pagination to a container and its child elements. </p>
+
+<h2>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h2>
+
+<p><strong>1. Add jQuery and jquery.paginate.js to your page</strong></p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>src/jquery.paginate.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+
+<p><strong>2. Add jquery.paginate.css (optional)</strong></p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">"</span>stylesheet<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>src/jquery.paginate.css<span class="pl-pds">"</span></span> /&gt;</pre></div>
+
+<p><strong>3. Initialize the plugin</strong></p>
+
+<div class="highlight highlight-text-html-basic"><pre><span class="pl-s1">&lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">  $(foo).paginate({ <span class="pl-s"><span class="pl-pds">'</span>perPage<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-c1">5</span> });</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+
+<h2>
+<a id="options" class="anchor" href="#options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Options</h2>
+
+<h3>
+<a id="perpage-integer" class="anchor" href="#perpage-integer" aria-hidden="true"><span class="octicon octicon-link"></span></a>perPage (integer)</h3>
+
+<p>Definies how many items are displayed per page.</p>
+
+<h3>
+<a id="autoscroll-boolean" class="anchor" href="#autoscroll-boolean" aria-hidden="true"><span class="octicon octicon-link"></span></a>autoScroll (boolean)</h3>
+
+<p>If activated pagination links will trigger an animations, that smoothly scrolls to the top of the definied container.</p>
+
+<h3>
+<a id="scope-stringelement" class="anchor" href="#scope-stringelement" aria-hidden="true"><span class="octicon octicon-link"></span></a>scope (string/element)</h3>
+
+<p>Definies which child elements will be targeted for the pagination (default: all).
+<strong>Example</strong> </p>
+
+<div class="highlight highlight-source-js"><pre>$(foo).paginate({ <span class="pl-s"><span class="pl-pds">'</span>scope<span class="pl-pds">'</span></span><span class="pl-k">:</span> $(<span class="pl-s"><span class="pl-pds">'</span>li<span class="pl-pds">'</span></span>) }); <span class="pl-c">//targets all li elements in foo</span></pre></div>
+
+<h3>
+<a id="paginateposition-array" class="anchor" href="#paginateposition-array" aria-hidden="true"><span class="octicon octicon-link"></span></a>paginatePosition (array)</h3>
+
+<p>Defines where the pagination will be placed.<br> 
+<strong>top</strong>: for above the container.<br>
+<strong>bottom</strong>: for below the container.</p>
+
+<h2>
+<a id="methods" class="anchor" href="#methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Methods</h2>
+
+<h3>
+<a id="switchpagepagenumber" class="anchor" href="#switchpagepagenumber" aria-hidden="true"><span class="octicon octicon-link"></span></a>switchPage(pageNumber)</h3>
+
+<h5>
+<a id="description" class="anchor" href="#description" aria-hidden="true"><span class="octicon octicon-link"></span></a>Description:</h5>
+
+<p>Jumps to page definied by parameter 'pageNumber'.</p>
+
+<h5>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage:</h5>
+
+<div class="highlight highlight-source-js"><pre>$(foo).<span class="pl-c1">data</span>(<span class="pl-s"><span class="pl-pds">'</span>paginate<span class="pl-pds">'</span></span>).switchPage(pageNumber)
+$(foo).<span class="pl-c1">data</span>(<span class="pl-s"><span class="pl-pds">'</span>paginate<span class="pl-pds">'</span></span>).switchPage(<span class="pl-s"><span class="pl-pds">'</span>next<span class="pl-pds">'</span></span>) <span class="pl-c">//next page</span>
+$(foo).<span class="pl-c1">data</span>(<span class="pl-s"><span class="pl-pds">'</span>paginate<span class="pl-pds">'</span></span>).switchPage(<span class="pl-s"><span class="pl-pds">'</span>prev<span class="pl-pds">'</span></span>) <span class="pl-c">//previous page</span></pre></div>
+
+<h5>
+<a id="parameter" class="anchor" href="#parameter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parameter:</h5>
+
+<p><strong>pageNumber</strong> (integer): the index of the page you want the pagination to jump. You may also use <strong>'prev'</strong> and <strong>'next'</strong> instead of an integer to navigate to the previous or next page.</p>
+
+<h3>
+<a id="kill" class="anchor" href="#kill" aria-hidden="true"><span class="octicon octicon-link"></span></a>kill()</h3>
+
+<h5>
+<a id="description-1" class="anchor" href="#description-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Description:</h5>
+
+<p>Remove plugin from element</p>
+
+<h5>
+<a id="usage-1" class="anchor" href="#usage-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage:</h5>
+
+<div class="highlight highlight-source-js"><pre>$(foo).<span class="pl-c1">data</span>(<span class="pl-s"><span class="pl-pds">'</span>paginate<span class="pl-pds">'</span></span>).kill()</pre></div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">jQuery Paginate maintained by <a href="https://github.com/bzzrckt">bzzrckt</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
