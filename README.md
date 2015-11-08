@@ -8,7 +8,7 @@ jquery.paginate.js adds a simple pagination to a container and its child element
 ```
 **2. Add jquery.paginate.css (optional)**
 ```html
-<link rel="stylehseet" href="src/jquery.paginate.css" />
+<link rel="stylesheet" href="src/jquery.paginate.css" />
 ```
 **3. Initialize the plugin**
 ```html
