@@ -42,10 +42,12 @@ Jumps to page definied by parameter 'pageNumber'.
 #####Usage:
 ```javascript
 $(foo).data('paginate').switchPage(pageNumber)
+$(foo).data('paginate').switchPage('next') //next page
+$(foo).data('paginate').switchPage('prev') //previous page
 ```
 #####Parameter:
 
-**pageNumber** (integer): the index of the page you want the pagination to jump
+**pageNumber** (integer): the index of the page you want the pagination to jump. You may also use **'prev'** and **'next'** instead of an integer to navigate to the previous or next page.
 
 ###kill()
 #####Description:
