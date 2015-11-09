@@ -1,6 +1,6 @@
 // jQuery paginate
 // Add a pagination to everything.
-// Version 1.2.1
+// Version 1.2.2
 // by Kevin Eichhorn (https://github.com/bzzrckt)
 
 (function( $ ) {
@@ -14,8 +14,13 @@
             perPage:				5, 			//how many items per page
             autoScroll:				true, 		//boolean: scroll to top of the container if a user clicks on a pagination link
             scope:					'', 		//which elements to target 
-			paginatePosition:		['bottom']	//defines where the pagination will be displayed ['top', 'bottom']
-        }
+			paginatePosition:		['bottom'],	//defines where the pagination will be displayed
+			containerTag:			'nav',
+			paginationTag:			'ul',
+			itemTag:				'li',
+			linkTag:				'a'
+			
+		}
 			
         var plugin = this;
         var plugin_index = $('.paginate').length;
@@ -127,19 +132,25 @@
 			#Generates HTML for pagination (nav)
 		*/
         var generatePagination = function() {
-			var paginationEl = '<nav class="paginate-pagination paginate-pagination-' + plugin_index + '" data-parent="' + plugin_index + '">';
-			paginationEl += '<ul>';
+			var paginationEl = '<' + plugin.settings.containerTag + ' class="paginate-pagination paginate-pagination-' + plugin_index + '" data-parent="' + plugin_index + '">';
+			paginationEl += '<' + plugin.settings.paginationTag + '>';
 			
-			paginationEl += '<li><a href="#" data-page="prev" class="page page-prev">&laquo;</a></li>';
+			paginationEl += '<' + plugin.settings.itemTag + '>';
+			paginationEl += '<' + plugin.settings.linkTag + ' href="#" data-page="prev" class="page page-prev">&laquo;</' + plugin.settings.linkTag + '>';
+			paginationEl += '</' + plugin.settings.itemTag + '>';
 
 			for(i = 1; i <= maxPage; i++) {
-				paginationEl += '<li><a href="#" data-page="' + i + '" class="page page-' + i + '">' + i + '</a></li>';
+			paginationEl += '<' + plugin.settings.itemTag + '>';
+				paginationEl += '<' + plugin.settings.linkTag + ' href="#" data-page="' + i + '" class="page page-' + i + '">' + i + '</' + plugin.settings.linkTag + '>';
+			paginationEl += '</' + plugin.settings.itemTag + '>';
 			}
-				
-			paginationEl += '<li><a href="#" data-page="next" class="page page-next">&raquo;</a></li>';
-			
-			paginationEl += '</ul>';		
-			paginationEl += '</nav>';
+
+			paginationEl += '<' + plugin.settings.itemTag + '>';				
+			paginationEl += '<' + plugin.settings.linkTag + ' href="#" data-page="next" class="page page-next">&raquo;</' + plugin.settings.linkTag + '>';
+			paginationEl += '</' + plugin.settings.itemTag + '>';	
+					
+			paginationEl += '</' + plugin.settings.paginationTag + '>';		
+			paginationEl += '</' + plugin.settings.containerTag + '>';
 			
 			//Adds event listener for the buttons
 			$('body').on('click', '.page', function(e) {
