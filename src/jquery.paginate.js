@@ -1,6 +1,6 @@
 // jQuery paginate
 // Add a pagination to everything.
-// Version 1.2.2
+// Version 1.2.3
 // by Kevin Eichhorn (https://github.com/bzzrckt)
 
 (function( $ ) {
@@ -18,7 +18,8 @@
 			containerTag:			'nav',
 			paginationTag:			'ul',
 			itemTag:				'li',
-			linkTag:				'a'
+			linkTag:				'a',
+			useHashLocation:		true		//Determines whether or not the plugin makes use of hash locations
 			
 		}
 			
@@ -54,8 +55,16 @@
 			
 			$element.addClass("paginate");
 			$element.addClass("paginate-" + plugin_index);
-								
-			plugin.switchPage(1); //go to initial page
+			
+			var hash = location.hash.match(/\#paginate\-(\d)/i);
+			
+			//Check if URL has matching location hash
+			if(hash && plugin.settings.useHashLocation) {
+				plugin.switchPage(hash[1]);
+			} else {
+				plugin.switchPage(1); //go to initial page
+			}				
+			
 				
         }
 
@@ -109,7 +118,7 @@
 			} else {
 				$('.paginate-pagination-' + plugin_index).find('.page-next').removeClass("deactive");	
 			}
-						
+								
 			curPage = page;
 			
 			return curPage;	
@@ -141,7 +150,7 @@
 
 			for(i = 1; i <= maxPage; i++) {
 			paginationEl += '<' + plugin.settings.itemTag + '>';
-				paginationEl += '<' + plugin.settings.linkTag + ' href="#" data-page="' + i + '" class="page page-' + i + '">' + i + '</' + plugin.settings.linkTag + '>';
+				paginationEl += '<' + plugin.settings.linkTag + ' href="#paginate-' + i + '" data-page="' + i + '" class="page page-' + i + '">' + i + '</' + plugin.settings.linkTag + '>';
 			paginationEl += '</' + plugin.settings.itemTag + '>';
 			}
 
@@ -154,16 +163,22 @@
 			
 			//Adds event listener for the buttons
 			$('body').on('click', '.page', function(e) {
-					console.log(e);
-					e.preventDefault();
 					
+					e.preventDefault();
+
 					var page = $(this).data('page');
 					var paginateParent = $(this).parents('.paginate-pagination').data('parent');
-										
-					if(plugin.settings.autoScroll)
-
-					if($('.paginate-' + paginateParent).data('paginate').switchPage(page)) {
+		
+					var page = $('.paginate-' + paginateParent).data('paginate').switchPage(page);
+					
+					if(page) {
+						
+						if(plugin.settings.useHashLocation) 				
+						location.hash = '#paginate-' + page; //set location hash
+						
+						if(plugin.settings.autoScroll) 
 						$('html, body').animate({scrollTop: $('.paginate-' + paginateParent).offset().top}, 'slow');
+						
 					}
 					
 			});	
