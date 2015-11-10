@@ -1,6 +1,6 @@
 // jQuery paginate
 // Add a pagination to everything.
-// Version 1.2.3
+// Version 1.2.4
 // by Kevin Eichhorn (https://github.com/bzzrckt)
 
 (function( $ ) {
@@ -19,7 +19,8 @@
 			paginationTag:			'ul',
 			itemTag:			'li',
 			linkTag:			'a',
-			useHashLocation:		true		//Determines whether or not the plugin makes use of hash locations
+			useHashLocation:		true,		//Determines whether or not the plugin makes use of hash locations
+			onPageClick:		function() {}	//Triggered when a pagination link is clicked
 			
 		}
 			
@@ -169,7 +170,10 @@
 
 			var page = $(this).data('page');
 			var paginateParent = $(this).parents('.paginate-pagination').data('parent');
-		
+			
+			//Call onPageClick callback function
+			$('.paginate-' + paginateParent).data('paginate').settings.onPageClick();
+			
 			var page = $('.paginate-' + paginateParent).data('paginate').switchPage(page);
 					
 			if(page) {
