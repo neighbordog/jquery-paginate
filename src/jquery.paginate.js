@@ -1,6 +1,6 @@
 // jQuery paginate
 // Add a pagination to everything.
-// Version 1.2.4
+// Version 0.2.4
 // by Kevin Eichhorn (https://github.com/bzzrckt)
 
 (function( $ ) {
