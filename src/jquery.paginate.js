@@ -3,7 +3,7 @@
     ^^^^^^^^^^^^^^^
 
     Description: Add a pagination to everything.
-    Version: Version 0.2.4
+    Version: Version 0.3.0
     Author: Kevin Eichhorn (https://github.com/neighbordog)
 */
 
@@ -167,8 +167,7 @@
             paginationEl += '</' + plugin.settings.containerTag + '>';
 
             //Adds event listener for the buttons
-            $('body').on('click', '.page', function(e) {
-
+            $(document).on('click', '.paginate-pagination-' + plugin_index + ' .page', function(e) {
                 e.preventDefault();
 
                 var page = $(this).data('page');
@@ -180,9 +179,8 @@
                 page = $('.paginate-' + paginateParent).data('paginate').switchPage(page);
 
                 if(page) {
-
                     if(plugin.settings.useHashLocation)
-                    location.hash = '#paginate-' + page; //set location hash
+                        location.hash = '#paginate-' + page; //set location hash
 
                     if(plugin.settings.autoScroll)
                         $('html, body').animate({scrollTop: $('.paginate-' + paginateParent).offset().top}, 'slow');
