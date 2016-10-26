@@ -1,11 +1,11 @@
 {
-  "name": "jquery-paginate",
+  "name": "paginate",
   "version" : "0.3.0",
   "homepage": "https://github.com/neighbordog/jquery-paginate",
   "authors": [
     "Kevin Eichhorn <kevineichhorn@me.com>"
   ],
-  "description": "A jQuery plugin for easy pagination",
+  "description": "A library for easy pagination",
   "main": "src/jquery.paginate.js",
   "license": "MIT",
   "ignore": [
