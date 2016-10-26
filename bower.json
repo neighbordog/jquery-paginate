@@ -8,7 +8,6 @@
   "description": "A jQuery plugin for easy pagination",
   "main": "src/jquery.paginate.js",
   "license": "MIT",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
